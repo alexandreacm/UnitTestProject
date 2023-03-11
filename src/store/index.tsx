@@ -4,7 +4,11 @@ type ActionType = {
     payload: any
 }
 
-const initialState = {
+export type State = {
+    status: string;
+}
+
+const initialState: State = {
     status: ''
 }
 

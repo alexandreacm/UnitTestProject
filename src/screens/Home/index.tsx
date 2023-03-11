@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, Image } from "react-native";
 
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 
 import { useSelector, useDispatch } from 'react-redux';
+import { State } from "../../store";
 
 type Props = {
     navigation: NativeStackHeaderProps;
@@ -12,7 +13,7 @@ type Props = {
 export default function Home({ navigation }: Props) {
     const [status, setStatus] = useState<string>('');
 
-    const statusStore = useSelector((state) => state.status);
+    const statusStore = useSelector((state: State) => state.status);
 
     const dispatch = useDispatch();
 
@@ -24,11 +25,12 @@ export default function Home({ navigation }: Props) {
         setTimeout(() => {
             setStatus('timeout is called');
         }, 1000);
-
     }, []);
 
     return (
         <View style={styles.container}>
+
+            <Image source={require('../../assets/images/sample.jpg')} />
 
             <Button
                 testID="myButton"
@@ -59,7 +61,7 @@ export default function Home({ navigation }: Props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f3f3f3',
+        backgroundColor: '#FB45',
         justifyContent: 'center'
     },
 });

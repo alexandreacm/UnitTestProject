@@ -2,7 +2,6 @@
 // import 'react-native';
 import React from 'react';
 
-// Note: test renderer must be required after react-native.
 import renderer, { create, act } from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react-native';
 
@@ -26,12 +25,20 @@ const tree = renderer.create(
 
 describe('all tests', () => {
 
-    test('Should run Snapshot test', () => {
+    test('Should render correctly Snapshot test', () => {
         expect(tree).toMatchSnapshot();
     });
 
     test('Should renders correctly', () => {
         create(
+            <Provider store={store}>
+                <Home navigation={navigation} />
+            </Provider>
+        );
+    });
+
+    test('Should render correctly Home', () => {
+        render(
             <Provider store={store}>
                 <Home navigation={navigation} />
             </Provider>
@@ -74,11 +81,20 @@ describe('all tests', () => {
         expect(text.children).toEqual('button pressed');
     });
 
-    it('timeout is called', () => {
-        act(() => jest.runAllTimers());
+    it('Should timeout to be called', () => {
+        jest.runAllTimers();
 
         const myText = tree.root.findByProps({ testID: 'myText' }).props;
         expect(myText.children).toEqual('timeout is called');
+    });
+
+    it('Should useEffect is called with @react-testing-library/react-native', () => {
+        const { queryByText } = render(
+            <Provider store={store}>
+                <Home navigation={navigation} />
+            </Provider>)
+
+        queryByText('effect is called');
     });
 
     it('Should navigate to details page', () => {
@@ -111,8 +127,14 @@ describe('all tests', () => {
         );
 
         const button = getByTestId('myButtonRedux');
-        // const button = tree.root.findByProps({ testID: 'myButtonRedux' }).props;
         fireEvent.press(button);
+
+        expect(store.getState().status).toEqual('Redux timeout is called');
+    });
+
+    it('Should status store properly with react-test-renderer', () => {
+        const button = tree.root.findByProps({ testID: 'myButtonRedux' }).props;
+        button.onPress();
 
         expect(store.getState().status).toEqual('Redux timeout is called');
     });

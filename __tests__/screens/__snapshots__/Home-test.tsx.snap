@@ -1,15 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`all tests Should run Snapshot test 1`] = `
+exports[`all tests Should render correctly Snapshot test 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#f3f3f3",
+      "backgroundColor": "#FB45",
       "flex": 1,
       "justifyContent": "center",
     }
   }
 >
+  <Image
+    source={1}
+  />
   <View
     accessibilityRole="button"
     accessible={true}

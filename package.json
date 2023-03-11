@@ -43,6 +43,9 @@
     "setupFiles": [
       "<rootDir>/__tests__/jestSetup.js"
     ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/node_modules/react-native/Libraries/Image/RelativeImageStub"
+    },
     "testMatch": [
       "**/__tests__/**/*-(spec|test).(js|tsx)"
     ],
