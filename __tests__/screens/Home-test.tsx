@@ -3,7 +3,7 @@
 import React from 'react';
 
 import renderer, { create, act } from 'react-test-renderer';
-import { render, fireEvent } from '@testing-library/react-native';
+import { render, fireEvent, screen } from '@testing-library/react-native';
 
 import Home from '../../src/screens/Home';
 
@@ -11,7 +11,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer } from '../../src/store';
 
-const navigation = {
+const navigation: any = {
     navigate: jest.fn()
 }
 
@@ -52,6 +52,7 @@ describe('all tests', () => {
             </Provider>
         );
 
+        // screen.debug();
         queryAllByText('PressMe');
     });
 
