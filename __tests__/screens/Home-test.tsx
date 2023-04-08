@@ -84,7 +84,7 @@ describe('HomeScreen', () => {
     });
 
     it('Should test when myButton is pressed', () => {
-        const { getByTestId, getByText, queryByText } = render(
+        const { getByTestId, getAllByTestId } = render(
             <Provider store={store}>
                 <Home navigation={navigation} />
             </Provider>
@@ -94,7 +94,7 @@ describe('HomeScreen', () => {
         fireEvent.press(button);
 
         // screen.debug();
-        expect(getByTestId('myText')).not.toBeNull();
+        expect(screen.getAllByText('button pressed').length).toBe(1);
     });
 
     it('button press with react test renderer', () => {
