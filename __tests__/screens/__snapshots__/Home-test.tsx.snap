@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`all tests Should render correctly Snapshot test 1`] = `
+exports[`HomeScreen Should render snapshot 1`] = `
 <View
   style={
     Object {

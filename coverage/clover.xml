@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680363524390" clover="3.2.0">
-  <project timestamp="1680363524390" name="All files">
+<coverage generated="1680965191700" clover="3.2.0">
+  <project timestamp="1680965191701" name="All files">
     <metrics statements="17" coveredstatements="17" conditionals="3" coveredconditionals="2" methods="9" coveredmethods="9" elements="29" coveredelements="28" complexity="0" loc="17" ncloc="17" packages="2" files="2" classes="2"/>
     <package name="screens.Home">
       <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
       <file name="index.tsx" path="/Users/alexandremarques/Development/COURSES/MOBILE/REACT_NATIVE/UnitTestProject/src/screens/Home/index.tsx">
         <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
-        <line num="14" count="15" type="stmt"/>
-        <line num="16" count="20" type="stmt"/>
-        <line num="18" count="15" type="stmt"/>
-        <line num="20" count="15" type="stmt"/>
-        <line num="21" count="8" type="stmt"/>
-        <line num="24" count="15" type="stmt"/>
-        <line num="25" count="8" type="stmt"/>
-        <line num="26" count="5" type="stmt"/>
-        <line num="30" count="15" type="stmt"/>
+        <line num="14" count="14" type="stmt"/>
+        <line num="16" count="19" type="stmt"/>
+        <line num="18" count="14" type="stmt"/>
+        <line num="20" count="14" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+        <line num="24" count="14" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="30" count="14" type="stmt"/>
         <line num="38" count="2" type="stmt"/>
         <line num="43" count="2" type="stmt"/>
         <line num="48" count="2" type="stmt"/>

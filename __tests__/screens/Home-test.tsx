@@ -23,13 +23,9 @@ const tree = renderer.create(
     </Provider>
 );
 
-describe('all tests', () => {
+describe('HomeScreen', () => {
 
-    test('Should render correctly Snapshot test', () => {
-        expect(tree).toMatchSnapshot();
-    });
-
-    test('Should renders correctly', () => {
+    test('Should renders correctly component', () => {
         create(
             <Provider store={store}>
                 <Home navigation={navigation} />
@@ -37,12 +33,8 @@ describe('all tests', () => {
         );
     });
 
-    test('Should render correctly Home', () => {
-        render(
-            <Provider store={store}>
-                <Home navigation={navigation} />
-            </Provider>
-        );
+    test('Should render snapshot', () => {
+        expect(tree).toMatchSnapshot();
     });
 
     test('Should show the default text PressMe', () => {
