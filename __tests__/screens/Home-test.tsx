@@ -15,7 +15,25 @@ const navigation: any = {
     navigate: jest.fn()
 }
 
-const store = createStore(reducer, { status: 'default store' });
+type ActionType = {
+    type: string;
+    payload: any
+}
+
+const actionMock: ActionType = {
+    type: 'setStatus',
+    payload: jest.fn()
+};
+
+type State = {
+    status: string;
+}
+
+const initialState: State = {
+    status: 'default store'
+}
+
+const store = createStore(reducer);
 
 const tree = renderer.create(
     <Provider store={store}>
@@ -25,7 +43,7 @@ const tree = renderer.create(
 
 describe('HomeScreen', () => {
 
-    test('Should renders correctly component', () => {
+    it('Should renders correctly component', () => {
         create(
             <Provider store={store}>
                 <Home navigation={navigation} />
@@ -33,11 +51,11 @@ describe('HomeScreen', () => {
         );
     });
 
-    test('Should render snapshot', () => {
+    it('Should render snapshot', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    test('Should show the default text PressMe', () => {
+    it('Should show the default text PressMe', () => {
         const { queryAllByText } = render(
             <Provider store={store}>
                 <Home navigation={navigation} />
@@ -48,7 +66,7 @@ describe('HomeScreen', () => {
         queryAllByText('PressMe');
     });
 
-    test('Should render the test statusItem', () => {
+    it('Should render button pressed', () => {
         const { getByTestId, debug } = render(
             <Provider store={store}>
                 <Home navigation={navigation} />
@@ -65,6 +83,20 @@ describe('HomeScreen', () => {
         // debug();
     });
 
+    it('Should test when myButton is pressed', () => {
+        const { getByTestId, getByText, queryByText } = render(
+            <Provider store={store}>
+                <Home navigation={navigation} />
+            </Provider>
+        );
+
+        const button = getByTestId('myButton');
+        fireEvent.press(button);
+
+        // screen.debug();
+        expect(getByTestId('myText')).not.toBeNull();
+    });
+
     it('button press with react test renderer', () => {
         const myButton = tree.root.findByProps({ testID: 'myButton' }).props;
         act(() => myButton.onPress());
@@ -79,6 +111,7 @@ describe('HomeScreen', () => {
 
         const myText = tree.root.findByProps({ testID: 'myText' }).props;
         expect(myText.children).toEqual('timeout is called');
+
     });
 
     it('Should useEffect is called with @react-testing-library/react-native', () => {
@@ -131,6 +164,23 @@ describe('HomeScreen', () => {
 
         expect(store.getState().status).toEqual('Redux timeout is called');
     });
+
+    it('Should render components with container', () => {
+        jest.runAllTimers();
+
+        const { container } = render(
+            <Provider store={store}>
+                <Home navigation={navigation} />
+            </Provider>
+        );
+
+        // screen.debug();
+        // const myText = container.findByProps({ testID: 'myText' }).props;
+
+        expect(container.children.length).toEqual(1);
+
+    });
+
 });
 
 

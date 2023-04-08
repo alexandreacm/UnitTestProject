@@ -154,8 +154,6 @@ exports[`HomeScreen Should render snapshot 1`] = `
       }
     }
     testID="myTextRedux"
-  >
-    default store
-  </Text>
+  />
 </View>
 `;
