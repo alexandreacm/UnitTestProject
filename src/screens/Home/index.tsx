@@ -6,15 +6,15 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from "../../store";
 
+import sample from '../../assets/images/sample.jpg';
+
 type Props = {
     navigation: NativeStackHeaderProps;
 }
 
 export default function Home({ navigation }: Props) {
     const [status, setStatus] = useState<string>('');
-
     const statusStore = useSelector((state: State) => state.status);
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -30,7 +30,8 @@ export default function Home({ navigation }: Props) {
     return (
         <View style={styles.container}>
 
-            <Image source={require('../../assets/images/sample.jpg')} />
+            {/* <Image source={require('../../assets/images/sample.jpg')} /> */}
+            <Image source={sample} />
 
             <Button
                 testID="myButton"
