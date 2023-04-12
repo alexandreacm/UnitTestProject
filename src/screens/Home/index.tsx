@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button, Image } from "react-native";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from "../../store";
+import { selectStatus } from "../../store";
 
 import sample from '../../assets/images/sample.jpg';
 
@@ -14,8 +14,9 @@ type Props = {
 
 export default function Home({ navigation }: Props) {
     const [status, setStatus] = useState<string>('');
-    const statusStore = useSelector((state: State) => state.status);
     const dispatch = useDispatch();
+    // const statusStore = useSelector((state: State) => state.status);
+    const statusStore = useSelector(selectStatus);
 
     useEffect(() => {
         console.log('effect is called');

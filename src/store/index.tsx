@@ -1,4 +1,3 @@
-
 type ActionType = {
     type: string;
     payload: any
@@ -20,3 +19,5 @@ export function reducer(state = initialState, action: ActionType) {
             return state
     }
 }
+
+export const selectStatus = (state: State) => state.status;
