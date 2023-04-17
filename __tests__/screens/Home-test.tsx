@@ -107,11 +107,13 @@ describe('HomeScreen', () => {
     });
 
     it('Should timeout to be called', () => {
-        jest.runAllTimers();
+
+        act(() => {
+            jest.runAllTimers();
+        });
 
         const myText = tree.root.findByProps({ testID: 'myText' }).props;
         expect(myText.children).toEqual('timeout is called');
-
     });
 
     it('Should useEffect is called with @react-testing-library/react-native', () => {
@@ -166,16 +168,16 @@ describe('HomeScreen', () => {
     });
 
     it('Should render components with container', () => {
-        jest.runAllTimers();
+
+        act(() => {
+            jest.runAllTimers();
+        })
 
         const { container } = render(
             <Provider store={store}>
                 <Home navigation={navigation} />
             </Provider>
         );
-
-        // screen.debug();
-        // const myText = container.findByProps({ testID: 'myText' }).props;
 
         expect(container.children.length).toEqual(1);
 

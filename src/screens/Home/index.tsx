@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectStatus } from "../../store";
 
 import sample from '../../assets/images/sample.jpg';
+import { Post } from "../../types";
 
 type Props = {
     navigation: NativeStackHeaderProps;
@@ -14,15 +15,37 @@ type Props = {
 
 export default function Home({ navigation }: Props) {
     const [status, setStatus] = useState<string>('');
+    const [post, setPost] = useState<Post[]>([]);
+    const [load, setLoad] = useState<Boolean>(false);
+
     const dispatch = useDispatch();
     // const statusStore = useSelector((state: State) => state.status);
     const statusStore = useSelector(selectStatus);
+    const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
+
 
     useEffect(() => {
-        console.log('effect is called');
+        function fetchData() {
+
+            setLoad(true);
+
+            fetch(baseUrl)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(err => {
+                    console.log(err);
+                })
+                .finally(() => {
+                    setLoad(false)
+                })
+        }
+
+        // fetchData();
     }, []);
 
     useEffect(() => {
+        console.log('effect is called');
+
         setTimeout(() => {
             setStatus('timeout is called');
         }, 1000);
