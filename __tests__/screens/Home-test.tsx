@@ -3,7 +3,7 @@
 import React from 'react';
 
 import renderer, { create, act } from 'react-test-renderer';
-import { render, fireEvent, screen } from '@testing-library/react-native';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react-native';
 
 import Home from '../../src/screens/Home';
 
@@ -106,14 +106,20 @@ describe('HomeScreen', () => {
         expect(text.children).toEqual('button pressed');
     });
 
-    it('Should timeout to be called', () => {
+    it('Should timeout to be called', async () => {
 
-        act(() => {
-            jest.runAllTimers();
+        // await act(() => {
+        //     jest.runAllTimers();
+        // });
+
+        // const myText = tree.root.findByProps({ testID: 'myText' }).props;
+        // expect(myText.children).toEqual('timeout is called');
+
+        await waitFor(() => {
+            const myText = tree.root.findByProps({ testID: 'myText' }).props;
+            expect(myText.children).toEqual('timeout is called');
         });
 
-        const myText = tree.root.findByProps({ testID: 'myText' }).props;
-        expect(myText.children).toEqual('timeout is called');
     });
 
     it('Should useEffect is called with @react-testing-library/react-native', () => {
@@ -169,9 +175,9 @@ describe('HomeScreen', () => {
 
     it('Should render components with container', () => {
 
-        act(() => {
-            jest.runAllTimers();
-        })
+        // act(() => {
+        //     jest.runAllTimers();
+        // })
 
         const { container } = render(
             <Provider store={store}>

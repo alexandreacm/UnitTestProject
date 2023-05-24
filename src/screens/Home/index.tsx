@@ -44,8 +44,6 @@ export default function Home({ navigation }: Props) {
     }, []);
 
     useEffect(() => {
-        console.log('effect is called');
-
         setTimeout(() => {
             setStatus('timeout is called');
         }, 1000);
