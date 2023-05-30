@@ -15,7 +15,7 @@ type Props = {
 
 export default function Home({ navigation }: Props) {
     const [status, setStatus] = useState<string>('');
-    const [post, setPost] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const [load, setLoad] = useState<Boolean>(false);
 
     const dispatch = useDispatch();
@@ -27,20 +27,20 @@ export default function Home({ navigation }: Props) {
     useEffect(() => {
         function fetchData() {
 
-            setLoad(true);
+            // setLoad(true);
 
             fetch(baseUrl)
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => setPosts(data.length))
                 .catch(err => {
-                    console.log(err);
+                    // console.log(err);
                 })
                 .finally(() => {
-                    setLoad(false)
+                    // setLoad(false)
                 })
         }
 
-        // fetchData();
+        fetchData();
     }, []);
 
     useEffect(() => {
@@ -77,7 +77,11 @@ export default function Home({ navigation }: Props) {
             <Text
                 testID="myTextRedux"
                 style={{ textAlign: 'center' }}>{statusStore}</Text>
-        </View>
+
+            <Text
+                testID="posts"
+                style={{ textAlign: 'center' }}>posts: {JSON.stringify(posts)}</Text>
+        </View >
     );
 }
 

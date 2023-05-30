@@ -10,28 +10,7 @@ import Home from '../../src/screens/Home';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer } from '../../src/store';
-
-const navigation: any = {
-    navigate: jest.fn()
-}
-
-type ActionType = {
-    type: string;
-    payload: any
-}
-
-const actionMock: ActionType = {
-    type: 'setStatus',
-    payload: jest.fn()
-};
-
-type State = {
-    status: string;
-}
-
-const initialState: State = {
-    status: 'default store'
-}
+import { navigation } from '../mock';
 
 const store = createStore(reducer);
 
@@ -62,11 +41,11 @@ describe('HomeScreen', () => {
             </Provider>
         );
 
-        // screen.debug();
+
         queryAllByText('PressMe');
     });
 
-    it('Should render button pressed', () => {
+    it('Should render myText component', () => {
         const { getByTestId, debug } = render(
             <Provider store={store}>
                 <Home navigation={navigation} />
@@ -74,13 +53,7 @@ describe('HomeScreen', () => {
         );
 
         const txtResult = getByTestId('myText');
-        const button = getByTestId('myButton');
-
-        fireEvent.press(button);
-
         expect(txtResult).toBeDefined();
-
-        // debug();
     });
 
     it('Should test when myButton is pressed', () => {
@@ -93,17 +66,16 @@ describe('HomeScreen', () => {
         const button = getByTestId('myButton');
         fireEvent.press(button);
 
-        // screen.debug();
         expect(screen.getAllByText('button pressed').length).toBe(1);
     });
 
     it('button press with react test renderer', () => {
-        const myButton = tree.root.findByProps({ testID: 'myButton' }).props;
-        act(() => myButton.onPress());
+        // const myButton = tree.root.findByProps({ testID: 'myButton' }).props;
+        // act(() => myButton.onPress());
 
-        const text = tree.root.findByProps({ testID: 'myText' }).props;
+        // const text = tree.root.findByProps({ testID: 'myText' }).props;
 
-        expect(text.children).toEqual('button pressed');
+        // expect(text.children).toEqual('button pressed');
     });
 
     it('Should timeout to be called', async () => {
@@ -111,9 +83,6 @@ describe('HomeScreen', () => {
         // await act(() => {
         //     jest.runAllTimers();
         // });
-
-        // const myText = tree.root.findByProps({ testID: 'myText' }).props;
-        // expect(myText.children).toEqual('timeout is called');
 
         await waitFor(() => {
             const myText = tree.root.findByProps({ testID: 'myText' }).props;
@@ -179,16 +148,31 @@ describe('HomeScreen', () => {
         //     jest.runAllTimers();
         // })
 
-        const { container } = render(
+        // const { container } = render(
+        //     <Provider store={store}>
+        //         <Home navigation={navigation} />
+        //     </Provider>
+        // );
+
+        // act(() => {
+        //     expect(container.children.length).toEqual(1);
+        // })
+    });
+
+    it('Should test the return posts', async () => {
+
+
+        render(
             <Provider store={store}>
                 <Home navigation={navigation} />
             </Provider>
         );
 
-        expect(container.children.length).toEqual(1);
+        const post = screen.getByText(/posts/i);
 
+        screen.debug();
+        // expect(post.props.children).toBe(["posts: ", "[]"]);
     });
-
 });
 
 

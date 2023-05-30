@@ -155,5 +155,16 @@ exports[`HomeScreen Should render snapshot 1`] = `
     }
     testID="myTextRedux"
   />
+  <Text
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+    testID="posts"
+  >
+    posts: 
+    []
+  </Text>
 </View>
 `;

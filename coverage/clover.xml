@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1680969215152" clover="3.2.0">
-  <project timestamp="1680969215152" name="All files">
-    <metrics statements="17" coveredstatements="17" conditionals="3" coveredconditionals="3" methods="9" coveredmethods="9" elements="29" coveredelements="29" complexity="0" loc="17" ncloc="17" packages="2" files="2" classes="2"/>
-    <package name="screens.Home">
-      <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
-      <file name="index.tsx" path="/Users/alexandremarques/Development/COURSES/MOBILE/REACT_NATIVE/UnitTestProject/src/screens/Home/index.tsx">
-        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
-        <line num="14" count="17" type="stmt"/>
-        <line num="16" count="22" type="stmt"/>
-        <line num="18" count="17" type="stmt"/>
-        <line num="20" count="17" type="stmt"/>
-        <line num="21" count="9" type="stmt"/>
-        <line num="24" count="17" type="stmt"/>
-        <line num="25" count="9" type="stmt"/>
-        <line num="26" count="8" type="stmt"/>
-        <line num="30" count="17" type="stmt"/>
-        <line num="38" count="3" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
-        <line num="48" count="2" type="stmt"/>
-        <line num="61" count="1" type="stmt"/>
-      </file>
-    </package>
-    <package name="store">
-      <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
-      <file name="index.tsx" path="/Users/alexandremarques/Development/COURSES/MOBILE/REACT_NATIVE/UnitTestProject/src/store/index.tsx">
-        <metrics statements="4" coveredstatements="4" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="16" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="18" count="2" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-      </file>
-    </package>
+<coverage generated="1685473469035" clover="3.2.0">
+  <project timestamp="1685473469036" name="All files">
+    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
   </project>
 </coverage>
