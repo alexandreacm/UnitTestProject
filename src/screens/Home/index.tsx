@@ -6,7 +6,7 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { useSelector, useDispatch } from 'react-redux';
 import { selectStatus } from "../../store";
 
-import sample from '../../assets/images/sample.jpg';
+import sample from '../../assets/images/sample.jpeg';
 import { Post } from "../../types";
 
 type Props = {
@@ -52,35 +52,38 @@ export default function Home({ navigation }: Props) {
     return (
         <View style={styles.container}>
 
-            {/* <Image source={require('../../assets/images/sample.jpg')} /> */}
-            <Image source={sample} />
+            <View style={{ flex: 1, alignItems: "center", justifyContent: 'center' }}>
+                <Image source={sample} style={{ width: 150, height: 150 }} />
+            </View>
 
-            <Button
-                testID="myButton"
-                title="PressMe"
-                onPress={() => setStatus('button pressed')} />
+            <View style={{ flex: 1 }}>
+                <Button
+                    testID="myButton"
+                    title="PressMe"
+                    onPress={() => setStatus('button pressed')} />
 
-            <Button
-                testID="myNavigateButton"
-                title="Navigate to Home"
-                onPress={() => navigation.navigate('Details')} />
+                <Button
+                    testID="myNavigateButton"
+                    title="Navigate to Home"
+                    onPress={() => navigation.navigate('Details')} />
 
-            <Button
-                testID="myButtonRedux"
-                title="Run Redux"
-                onPress={() => dispatch({ type: 'setStatus', payload: 'Redux timeout is called' })} />
+                <Button
+                    testID="myButtonRedux"
+                    title="Run Redux"
+                    onPress={() => dispatch({ type: 'setStatus', payload: 'Redux timeout is called' })} />
 
-            <Text
-                testID="myText"
-                style={{ textAlign: 'center' }}>{status}</Text>
+                <Text
+                    testID="myText"
+                    style={{ textAlign: 'center' }}>{status}</Text>
 
-            <Text
-                testID="myTextRedux"
-                style={{ textAlign: 'center' }}>{statusStore}</Text>
+                <Text
+                    testID="myTextRedux"
+                    style={{ textAlign: 'center' }}>{statusStore}</Text>
 
-            <Text
-                testID="posts"
-                style={{ textAlign: 'center' }}>posts: {JSON.stringify(posts)}</Text>
+                <Text
+                    testID="posts"
+                    style={{ textAlign: 'center' }}>posts: {JSON.stringify(posts)}</Text>
+            </View>
         </View >
     );
 }
