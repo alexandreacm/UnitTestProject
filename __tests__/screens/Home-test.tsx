@@ -69,15 +69,6 @@ describe('HomeScreen', () => {
         expect(screen.getAllByText('button pressed').length).toBe(1);
     });
 
-    it('button press with react test renderer', () => {
-        // const myButton = tree.root.findByProps({ testID: 'myButton' }).props;
-        // act(() => myButton.onPress());
-
-        // const text = tree.root.findByProps({ testID: 'myText' }).props;
-
-        // expect(text.children).toEqual('button pressed');
-    });
-
     it('Should timeout to be called', async () => {
 
         // await act(() => {
@@ -142,37 +133,6 @@ describe('HomeScreen', () => {
         expect(store.getState().status).toEqual('Redux timeout is called');
     });
 
-    it('Should render components with container', () => {
-
-        // act(() => {
-        //     jest.runAllTimers();
-        // })
-
-        // const { container } = render(
-        //     <Provider store={store}>
-        //         <Home navigation={navigation} />
-        //     </Provider>
-        // );
-
-        // act(() => {
-        //     expect(container.children.length).toEqual(1);
-        // })
-    });
-
-    it('Should test the return posts', async () => {
-
-
-        render(
-            <Provider store={store}>
-                <Home navigation={navigation} />
-            </Provider>
-        );
-
-        const post = screen.getByText(/posts/i);
-
-        screen.debug();
-        // expect(post.props.children).toBe(["posts: ", "[]"]);
-    });
 });
 
 

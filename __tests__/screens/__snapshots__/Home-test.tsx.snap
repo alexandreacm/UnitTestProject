@@ -10,161 +10,185 @@ exports[`HomeScreen Should render snapshot 1`] = `
     }
   }
 >
-  <Image
-    source={1}
-  />
   <View
-    accessibilityRole="button"
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "opacity": 1,
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       }
     }
-    testID="myButton"
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 150,
+          "width": 150,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
   >
     <View
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {},
-        ]
+        Object {
+          "opacity": 1,
+        }
       }
+      testID="myButton"
     >
-      <Text
+      <View
         style={
           Array [
-            Object {
-              "color": "#007AFF",
-              "fontSize": 18,
-              "margin": 8,
-              "textAlign": "center",
-            },
+            Object {},
           ]
         }
       >
-        PressMe
-      </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "margin": 8,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          PressMe
+        </Text>
+      </View>
     </View>
-  </View>
-  <View
-    accessibilityRole="button"
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
-    testID="myNavigateButton"
-  >
     <View
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {},
-        ]
+        Object {
+          "opacity": 1,
+        }
       }
+      testID="myNavigateButton"
     >
-      <Text
+      <View
         style={
           Array [
-            Object {
-              "color": "#007AFF",
-              "fontSize": 18,
-              "margin": 8,
-              "textAlign": "center",
-            },
+            Object {},
           ]
         }
       >
-        Navigate to Home
-      </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "margin": 8,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Navigate to Home
+        </Text>
+      </View>
     </View>
-  </View>
-  <View
-    accessibilityRole="button"
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
-    testID="myButtonRedux"
-  >
     <View
+      accessibilityRole="button"
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {},
-        ]
+        Object {
+          "opacity": 1,
+        }
       }
+      testID="myButtonRedux"
     >
-      <Text
+      <View
         style={
           Array [
-            Object {
-              "color": "#007AFF",
-              "fontSize": 18,
-              "margin": 8,
-              "textAlign": "center",
-            },
+            Object {},
           ]
         }
       >
-        Run Redux
-      </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "margin": 8,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Run Redux
+        </Text>
+      </View>
     </View>
+    <Text
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+      testID="myText"
+    />
+    <Text
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+      testID="myTextRedux"
+    />
+    <Text
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+      testID="posts"
+    >
+      posts: 
+      []
+    </Text>
   </View>
-  <Text
-    style={
-      Object {
-        "textAlign": "center",
-      }
-    }
-    testID="myText"
-  />
-  <Text
-    style={
-      Object {
-        "textAlign": "center",
-      }
-    }
-    testID="myTextRedux"
-  />
-  <Text
-    style={
-      Object {
-        "textAlign": "center",
-      }
-    }
-    testID="posts"
-  >
-    posts: 
-    []
-  </Text>
 </View>
 `;

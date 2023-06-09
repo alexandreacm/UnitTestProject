@@ -23,25 +23,44 @@ export default function Home({ navigation }: Props) {
     const statusStore = useSelector(selectStatus);
     const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
 
+    // useEffect(() => {
+    //     async function fetchData() {
 
-    useEffect(() => {
-        function fetchData() {
+    //         try {
+    //             // setLoad(true);
 
-            // setLoad(true);
+    //             const response = await api.get<Array<IUser>>('users');
+    //             setPosts(response.data);
 
-            fetch(baseUrl)
-                .then(response => response.json())
-                .then(data => setPosts(data.length))
-                .catch(err => {
-                    // console.log(err);
-                })
-                .finally(() => {
-                    // setLoad(false)
-                })
-        }
+    //             // setLoad(false);
 
-        fetchData();
-    }, []);
+    //         } catch (err) {
+    //             // console.log(err);
+    //         }
+    //     }
+
+    //     fetchData();
+    // }, []);
+
+
+    // useEffect(() => {
+    //     function fetchData() {
+
+    //         // setLoad(true);
+
+    //         fetch(baseUrl)
+    //             .then(response => response.json())
+    //             .then(data => setPosts(data.length))
+    //             .catch(err => {
+    //                 // console.log(err);
+    //             })
+    //             .finally(() => {
+    //                 // setLoad(false)
+    //             })
+    //     }
+
+    //     fetchData();
+    // }, []);
 
     useEffect(() => {
         setTimeout(() => {
