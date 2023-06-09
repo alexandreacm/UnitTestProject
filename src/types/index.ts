@@ -4,3 +4,10 @@ export interface Post {
     title: string;
     completed: boolean;
 }
+
+export interface IUser {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+}

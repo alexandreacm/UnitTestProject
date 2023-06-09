@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { View, Text, StyleSheet, Button, Image, ScrollView } from "react-native";
 
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 
@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectStatus } from "../../store";
 
 import sample from '../../assets/images/sample.jpeg';
-import { Post } from "../../types";
+import { IUser } from "../../types";
+// import { api } from "../../services/api";
 
 type Props = {
     navigation: NativeStackHeaderProps;
@@ -15,48 +16,27 @@ type Props = {
 
 export default function Home({ navigation }: Props) {
     const [status, setStatus] = useState<string>('');
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Array<IUser>>([]);
     const [load, setLoad] = useState<Boolean>(false);
 
     const dispatch = useDispatch();
     // const statusStore = useSelector((state: State) => state.status);
     const statusStore = useSelector(selectStatus);
-    const baseUrl = 'https://jsonplaceholder.typicode.com/todos';
 
     // useEffect(() => {
     //     async function fetchData() {
 
     //         try {
-    //             // setLoad(true);
+    //             setLoad(true);
 
     //             const response = await api.get<Array<IUser>>('users');
     //             setPosts(response.data);
 
-    //             // setLoad(false);
+    //             setLoad(false);
 
     //         } catch (err) {
-    //             // console.log(err);
+    //             console.log(err);
     //         }
-    //     }
-
-    //     fetchData();
-    // }, []);
-
-
-    // useEffect(() => {
-    //     function fetchData() {
-
-    //         // setLoad(true);
-
-    //         fetch(baseUrl)
-    //             .then(response => response.json())
-    //             .then(data => setPosts(data.length))
-    //             .catch(err => {
-    //                 // console.log(err);
-    //             })
-    //             .finally(() => {
-    //                 // setLoad(false)
-    //             })
     //     }
 
     //     fetchData();
@@ -71,39 +51,52 @@ export default function Home({ navigation }: Props) {
     return (
         <View style={styles.container}>
 
-            <View style={{ flex: 1, alignItems: "center", justifyContent: 'center' }}>
-                <Image source={sample} style={{ width: 150, height: 150 }} />
-            </View>
+            <ScrollView>
 
-            <View style={{ flex: 1 }}>
-                <Button
-                    testID="myButton"
-                    title="PressMe"
-                    onPress={() => setStatus('button pressed')} />
+                <View style={{ flex: 1, alignItems: "center", justifyContent: 'center' }}>
+                    <Image source={sample} style={{ width: 150, height: 150 }} />
+                </View>
 
-                <Button
-                    testID="myNavigateButton"
-                    title="Navigate to Home"
-                    onPress={() => navigation.navigate('Details')} />
 
-                <Button
-                    testID="myButtonRedux"
-                    title="Run Redux"
-                    onPress={() => dispatch({ type: 'setStatus', payload: 'Redux timeout is called' })} />
+                <View style={{ flex: 1 }}>
+                    <Button
+                        testID="myButton"
+                        title="PressMe"
+                        onPress={() => setStatus('button pressed')} />
 
-                <Text
-                    testID="myText"
-                    style={{ textAlign: 'center' }}>{status}</Text>
+                    <Button
+                        testID="myNavigateButton"
+                        title="Navigate to Home"
+                        onPress={() => navigation.navigate('Details')} />
 
-                <Text
-                    testID="myTextRedux"
-                    style={{ textAlign: 'center' }}>{statusStore}</Text>
+                    <Button
+                        testID="myButtonRedux"
+                        title="Run Redux"
+                        onPress={() => dispatch({ type: 'setStatus', payload: 'Redux timeout is called' })} />
 
-                <Text
-                    testID="posts"
-                    style={{ textAlign: 'center' }}>posts: {JSON.stringify(posts)}</Text>
-            </View>
-        </View >
+                    <Text
+                        testID="myText"
+                        style={{ textAlign: 'center' }}>{status}</Text>
+
+                    <Text
+                        testID="myTextRedux"
+                        style={{ textAlign: 'center' }}>{statusStore}</Text>
+
+                    <View style={{ marginTop: 10, backgroundColor: '#f3f3f3', padding: 10 }}>
+                        {
+                            posts.map((user, idx) => {
+                                return (
+                                    <Text
+                                        key={idx}
+                                        testID="posts"
+                                        style={{ textAlign: 'center' }}>{user?.name}</Text>
+                                )
+                            })
+                        }
+                    </View>
+                </View>
+            </ScrollView>
+        </View>
     );
 }
 
@@ -111,6 +104,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FB45',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        padding: 12
     },
 });
