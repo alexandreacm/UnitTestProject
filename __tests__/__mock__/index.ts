@@ -1,5 +1,6 @@
 const navigation: any = {
-    navigate: jest.fn()
+    navigate: jest.fn(),
+    goBack: jest.fn(),
 }
 
 export type ActionType = {

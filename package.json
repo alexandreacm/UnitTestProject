@@ -25,11 +25,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.22.5",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "@testing-library/react-native": "^11.5.2",
     "@tsconfig/react-native": "^2.0.2",
-    "@types/jest": "26.0.23",
+    "@types/jest": "^29.5.2",
     "@types/react": "^18.0.21",
     "@types/react-native": "^0.70.6",
     "@types/react-test-renderer": "^18.0.0",
@@ -41,36 +42,7 @@
     "jest-fetch-mock": "^3.0.3",
     "metro-react-native-babel-preset": "0.72.3",
     "react-test-renderer": "18.1.0",
+    "ts-jest": "^29.1.0",
     "typescript": "^4.8.3"
-  },
-  "jest": {
-    "preset": "react-native",
-    "setupFiles": [
-      "<rootDir>/__tests__/jestSetup.js"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/node_modules/react-native/Libraries/Image/RelativeImageStub"
-    },
-    "testMatch": [
-      "**/__tests__/**/*-(spec|test).(js|tsx)"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/android",
-      "<rootDir>/ios",
-      "<rootDir>/node_modules",
-      "<rootDir>/__tests__/jestSetup.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "node_modules"
-    ],
-    "collectCoverage": false
   }
 }

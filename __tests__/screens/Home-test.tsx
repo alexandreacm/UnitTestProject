@@ -10,7 +10,12 @@ import Home from '../../src/screens/Home';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer } from '../../src/store';
-import { navigation } from '../mock';
+import { navigation } from '../__mock__';
+import fetchMock from 'jest-fetch-mock';
+import { APIRequest } from '../../src/services/api';
+
+import axiosMock from '../__mock__/axios';
+import axios from 'axios';
 
 const store = createStore(reducer);
 
@@ -19,6 +24,7 @@ const tree = renderer.create(
         <Home navigation={navigation} />
     </Provider>
 );
+
 
 describe('HomeScreen', () => {
 
@@ -133,6 +139,74 @@ describe('HomeScreen', () => {
         expect(store.getState().status).toEqual('Redux timeout is called');
     });
 
+    test('show display how async / await works', async () => {
+        const value = await Promise.resolve(true);
+        expect(value).toBe(true);
+    });
+
+    test('should display how async / await works with reject', async () => {
+        const err = Promise.reject('something went wrong');
+
+        err.then(err => {
+            expect(err).toBe('something went wrong');
+        })
+
+    });
+
+    describe('Testing API', () => {
+        beforeEach(() => {
+            fetchMock.resetMocks();
+        });
+
+        test('Should call google and return mock data', async () => {
+            fetchMock.mockResponseOnce(JSON.stringify({ data: '12345' }));
+
+            const response = await APIRequest('google');
+            expect(response.data).toEqual('12345')
+        });
+
+        test('Should test if google was called', async () => {
+            fetchMock.mockResponseOnce(JSON.stringify({ data: '12345' }));
+
+            await APIRequest('google');
+
+            expect(fetchMock.mock.calls.length).toEqual(1);
+            expect(fetchMock.mock.calls[0][0]).toBe('https://google.com');
+        });
+
+        test('Should test if google was called 1', async () => {
+
+            const userMock = {
+                id: 1,
+                name: 'Leanne Graham',
+                username: 'Bret',
+                email: 'Sincere@april.biz',
+            }
+
+            fetchMock.mockResponseOnce(JSON.stringify(userMock));
+
+            const response = await APIRequest('google');
+
+            expect(fetchMock).toHaveBeenCalledTimes(1);
+            expect(response).toEqual(userMock)
+        });
+
+        it('Should call google with 1 time', async () => {
+            await axiosMock.get('https://google.com');
+
+            expect(axiosMock.get).toHaveBeenCalledTimes(1);
+        });
+
+        it('Should call google with other method', async () => {
+
+            jest.spyOn(axiosMock, 'get').mockResolvedValueOnce({ data: '102030' });
+
+            const response = await axiosMock.get('https://google.com');
+            // const response = await axios.get('https://google.com');
+
+            expect(response.data).toEqual('102030');
+        })
+    })
 });
 
 
