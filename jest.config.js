@@ -1,9 +1,5 @@
 module.exports = {
   preset: 'react-native',
-  "transform": {
-    "^.+\\.ts?$": "ts-jest"
-  },
-  transformIgnorePatterns: ["/node_modules/(?!react-file-drop)"],
   testEnvironment: 'node',
   setupFiles: ["<rootDir>/__tests__/jest.setup.js"],
   moduleNameMapper: {

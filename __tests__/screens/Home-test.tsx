@@ -10,7 +10,7 @@ import Home from '../../src/screens/Home';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer } from '../../src/store';
-import { navigation } from '../__mock__';
+import { mocks, navigation } from '../__mock__';
 import fetchMock from 'jest-fetch-mock';
 import { APIRequest } from '../../src/services/api';
 
@@ -25,6 +25,7 @@ const tree = renderer.create(
     </Provider>
 );
 
+const BASE_URL = 'https://jsonplaceholder.typicode.com/users';
 
 describe('HomeScreen', () => {
 
@@ -139,33 +140,30 @@ describe('HomeScreen', () => {
         expect(store.getState().status).toEqual('Redux timeout is called');
     });
 
-    test('show display how async / await works', async () => {
-        const value = await Promise.resolve(true);
-        expect(value).toBe(true);
-    });
-
-    test('should display how async / await works with reject', async () => {
-        const err = Promise.reject('something went wrong');
-
-        err.then(err => {
-            expect(err).toBe('something went wrong');
-        })
-
-    });
-
     describe('Testing API', () => {
         beforeEach(() => {
             fetchMock.resetMocks();
         });
 
+        test('should display how async / await works with reject', async () => {
+            const err = Promise.reject('something went wrong');
+
+            err.then(err => {
+                expect(err).toBe('something went wrong');
+            })
+
+        });
+
         test('Should call google and return mock data', async () => {
+
             fetchMock.mockResponseOnce(JSON.stringify({ data: '12345' }));
 
             const response = await APIRequest('google');
-            expect(response.data).toEqual('12345')
+            expect(response.data).toEqual('12345');
         });
 
         test('Should test if google was called', async () => {
+
             fetchMock.mockResponseOnce(JSON.stringify({ data: '12345' }));
 
             await APIRequest('google');
@@ -174,7 +172,7 @@ describe('HomeScreen', () => {
             expect(fetchMock.mock.calls[0][0]).toBe('https://google.com');
         });
 
-        test('Should test if google was called 1', async () => {
+        test('Should test if google was called with an object', async () => {
 
             const userMock = {
                 id: 1,
@@ -191,20 +189,27 @@ describe('HomeScreen', () => {
             expect(response).toEqual(userMock)
         });
 
-        it('Should call google with 1 time', async () => {
+        it('Should call google with a mock of axios', async () => {
             await axiosMock.get('https://google.com');
 
             expect(axiosMock.get).toHaveBeenCalledTimes(1);
         });
 
-        it('Should call google with other method', async () => {
+        it('Should call Json place holder', async () => {
 
-            jest.spyOn(axiosMock, 'get').mockResolvedValueOnce({ data: '102030' });
+            // const spyFn = jest.spyOn(axiosMock, 'get')
+            //     .mockImplementation(() => {
+            //         Promise.resolve({ data: mocks.users })
+            //     });
 
-            const response = await axiosMock.get('https://google.com');
-            // const response = await axios.get('https://google.com');
+            jest.spyOn(axiosMock, 'get').mockResolvedValueOnce({ data: mocks.users });
+            // const spyFn = jest.spyOn(axiosMock, 'get');
 
-            expect(response.data).toEqual('102030');
+            const response = await axiosMock.get(BASE_URL);
+
+            // console.log(response.data[0])
+            expect(response.data.length).toEqual(3);
+            expect(JSON.stringify(response.data[0])).toBe(JSON.stringify(mocks.userMock));
         })
     })
 });
