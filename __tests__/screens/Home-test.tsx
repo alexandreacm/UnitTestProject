@@ -176,19 +176,12 @@ describe('HomeScreen', () => {
 
         test('Should test if google was called with an object', async () => {
 
-            const userMock = {
-                id: 1,
-                name: 'Leanne Graham',
-                username: 'Bret',
-                email: 'Sincere@april.biz',
-            }
-
-            fetchMock.mockResponseOnce(JSON.stringify(userMock));
+            fetchMock.mockResponseOnce(JSON.stringify(mocks.userObjMock));
 
             const response = await APIRequest('google');
 
             expect(fetchMock).toHaveBeenCalledTimes(1);
-            expect(response).toEqual(userMock)
+            expect(response).toEqual(mocks.userObjMock)
         });
 
         it('Should call google with a mock of axios', async () => {
@@ -212,7 +205,17 @@ describe('HomeScreen', () => {
             // console.log(response.data[0])
             expect(response.data.length).toEqual(3);
             expect(JSON.stringify(response.data[0])).toBe(JSON.stringify(mocks.userMock));
-        })
+        });
+
+        test('Should test when the parameter who is not filled', async () => {
+
+            fetchMock.mockResponseOnce(JSON.stringify(mocks.userObjMock));
+
+            const response = await APIRequest('');
+
+            expect(fetchMock).toHaveBeenCalledTimes(0);
+            expect(response).toBe('no argument provided')
+        });
     })
 });
 

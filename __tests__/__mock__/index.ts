@@ -96,5 +96,11 @@ const userMock = {
     phone: '1-770-736-8031 x56442'
 }
 
+const userObjMock = {
+    id: 1,
+    name: 'Leanne Graham',
+    username: 'Bret',
+    email: 'Sincere@april.biz',
+}
 
-export const mocks = { users, userMock }
+export const mocks = { users, userMock, userObjMock }
