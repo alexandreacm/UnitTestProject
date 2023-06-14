@@ -159,7 +159,9 @@ describe('HomeScreen', () => {
             fetchMock.mockResponseOnce(JSON.stringify({ data: '12345' }));
 
             const response = await APIRequest('google');
+
             expect(response.data).toEqual('12345');
+            expect(fetchMock).toHaveBeenCalledTimes(1);
         });
 
         test('Should test if google was called', async () => {
