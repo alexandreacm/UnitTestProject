@@ -10,9 +10,9 @@ import Home from '../../src/screens/Home';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { reducer } from '../../src/store';
-import { mocks, navigation } from '../__mock__';
+import { mocks } from '../__mock__';
 import fetchMock from 'jest-fetch-mock';
-import { APIRequest } from '../../src/services/api';
+import { APIRequest, BASE_URL } from '../../src/services/api';
 
 import axiosMock from '../__mock__/axios';
 import axios from 'axios';
@@ -21,30 +21,36 @@ const store = createStore(reducer);
 
 const tree = renderer.create(
     <Provider store={store}>
-        <Home navigation={navigation} />
+        <Home navigation={mocks.navigation} />
     </Provider>
 );
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com/users';
-
 describe('HomeScreen', () => {
 
-    it('Should renders correctly component', () => {
-        create(
+    it('Should render correctly component', () => {
+        render(
             <Provider store={store}>
-                <Home navigation={navigation} />
+                <Home navigation={mocks.navigation} />
             </Provider>
         );
     });
 
     it('Should render snapshot', () => {
-        expect(tree).toMatchSnapshot();
+        // expect(tree).toMatchSnapshot();
+        render(
+            <Provider store={store}>
+                <Home navigation={mocks.navigation} />
+            </Provider>
+        );
+
+
+        expect(screen.toJSON()).toMatchSnapshot();
     });
 
     it('Should show the default text PressMe', () => {
         const { queryAllByText } = render(
             <Provider store={store}>
-                <Home navigation={navigation} />
+                <Home navigation={mocks.navigation} />
             </Provider>
         );
 
@@ -55,7 +61,7 @@ describe('HomeScreen', () => {
     it('Should render myText component', () => {
         const { getByTestId, debug } = render(
             <Provider store={store}>
-                <Home navigation={navigation} />
+                <Home navigation={mocks.navigation} />
             </Provider>
         );
 
@@ -63,10 +69,26 @@ describe('HomeScreen', () => {
         expect(txtResult).toBeDefined();
     });
 
+    it('Should test the status state', async () => {
+        const { getByTestId, findByText, debug } = render(
+            <Provider store={store}>
+                <Home navigation={mocks.navigation} />
+            </Provider>
+        );
+
+        const text = 'timeout is called';
+
+        await findByText(text);
+        const myText = getByTestId('myText');
+
+        // console.log(myText.props.children)
+        expect(myText.props.children).toEqual(text);
+    });
+
     it('Should test when myButton is pressed', () => {
         const { getByTestId, getAllByTestId } = render(
             <Provider store={store}>
-                <Home navigation={navigation} />
+                <Home navigation={mocks.navigation} />
             </Provider>
         );
 
@@ -92,7 +114,7 @@ describe('HomeScreen', () => {
     it('Should useEffect is called with @react-testing-library/react-native', () => {
         const { queryByText } = render(
             <Provider store={store}>
-                <Home navigation={navigation} />
+                <Home navigation={mocks.navigation} />
             </Provider>)
 
         queryByText('effect is called');
@@ -103,27 +125,27 @@ describe('HomeScreen', () => {
         const myButton = tree.root.findByProps({ testID: 'myNavigateButton' }).props;
         myButton.onPress();
 
-        expect(navigation.navigate).toBeCalledWith('Details');
+        expect(mocks.navigation.navigate).toBeCalledWith('Details');
     });
 
     it('Should navigate to details page with @testing-library', () => {
 
         const { getByTestId } = render(
             <Provider store={store}>
-                <Home navigation={navigation} />
+                <Home navigation={mocks.navigation} />
             </Provider>
         );
 
         const navigateButton = getByTestId('myNavigateButton');
         fireEvent.press(navigateButton);
 
-        expect(navigation.navigate).toBeCalledWith('Details');
+        expect(mocks.navigation.navigate).toBeCalledWith('Details');
     });
 
     it('Should status store properly', () => {
         const { getByTestId } = render(
             <Provider store={store}>
-                <Home navigation={navigation} />
+                <Home navigation={mocks.navigation} />
             </Provider>
         );
 
@@ -197,8 +219,8 @@ describe('HomeScreen', () => {
             //         Promise.resolve({ data: mocks.users })
             //     });
 
-            jest.spyOn(axiosMock, 'get').mockResolvedValueOnce({ data: mocks.users });
             // const spyFn = jest.spyOn(axiosMock, 'get');
+            jest.spyOn(axiosMock, 'get').mockResolvedValueOnce({ data: mocks.users });
 
             const response = await axiosMock.get(BASE_URL);
 
@@ -208,9 +230,6 @@ describe('HomeScreen', () => {
         });
 
         test('Should test when the parameter who is not filled', async () => {
-
-            fetchMock.mockResponseOnce(JSON.stringify(mocks.userObjMock));
-
             const response = await APIRequest('');
 
             expect(fetchMock).toHaveBeenCalledTimes(0);

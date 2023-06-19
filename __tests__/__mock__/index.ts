@@ -24,8 +24,6 @@ const initialState: State = {
     status: 'default store'
 }
 
-export { navigation, actionMock, initialState }
-
 const users: Array<IUser> = [
     {
         id: 1,
@@ -103,4 +101,4 @@ const userObjMock = {
     email: 'Sincere@april.biz',
 }
 
-export const mocks = { users, userMock, userObjMock }
+export const mocks = { users, userMock, userObjMock, navigation, actionMock, initialState }
